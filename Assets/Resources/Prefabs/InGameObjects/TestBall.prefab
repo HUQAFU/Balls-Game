@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4119718483305594}
   - component: {fileID: 114023455015646344}
-  - component: {fileID: 114344580887268852}
   - component: {fileID: 114427320636522110}
   - component: {fileID: 114881032756854342}
+  - component: {fileID: 114272874635090528}
+  - component: {fileID: 114344580887268852}
   - component: {fileID: 114715944967319168}
   m_Layer: 9
   m_Name: TestBall
@@ -44,6 +45,7 @@ GameObject:
   - component: {fileID: 135376927151686992}
   - component: {fileID: 114284477430168370}
   - component: {fileID: 114990166847757982}
+  - component: {fileID: 114361968521493448}
   m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
@@ -58,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1312260538003328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.657607, y: 3.12, z: -2.7041283}
+  m_LocalPosition: {x: 0.3, y: 0.01, z: -1.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4350305217782900}
@@ -93,7 +95,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5b1d6748d23b6ec438d02155912c30ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,6 +133,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668e7428b8fb8e34389914231d8d94cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114272874635090528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312260538003328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5509f5f5eecce824583bd59c68391538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSizeScore: 1
+  _maxSizeScore: 5
 --- !u!114 &114284477430168370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,7 +189,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   _direction: {x: 0, y: 1, z: 0}
-  _noizeAmount: 0
+  _noizeAmount: 1
+--- !u!114 &114361968521493448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409018565949202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdeda8bd8d5e6f40a4cee259d2750e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114427320636522110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSize: 1
-  _maxSize: 5
+  _maxSize: 4
   _scalingObject: {fileID: 4350305217782900}
 --- !u!114 &114715944967319168
 MonoBehaviour:
@@ -213,6 +239,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minSpeed: 1
   _maxSpeedr: 5
+  _speedMultiplerCurveByTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 4
+      inSlope: 12.633558
+      outSlope: 12.633558
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.061344564
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114990166847757982
 MonoBehaviour:
   m_ObjectHideFlags: 1
