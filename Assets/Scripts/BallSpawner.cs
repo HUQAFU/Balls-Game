@@ -43,7 +43,7 @@ public class BallSpawner : MonoBehaviour
     /// </summary>
     void OnStartGame()
     {
-        if (_prefabs.Length > 0)
+        if (_prefabs != null && _prefabs.Length > 0)
         {
             InvokeRepeating("Spawn", 0, _spawnInterval);
         }
@@ -66,8 +66,15 @@ public class BallSpawner : MonoBehaviour
     /// </summary>
     void Spawn()
     {
-        Vector3 spawnPosition = new Vector3(Random.Range(-_spawnXRange, _spawnXRange), transform.position.y, transform.position.z);
-        Instantiate(_prefabs[Random.Range(0, _prefabs.Length)], spawnPosition, transform.rotation);
+        GameObject Ball = _prefabs[Random.Range(0, _prefabs.Length)];
+        if (Ball)
+        {
+            Vector3 spawnPosition = new Vector3(Random.Range(-_spawnXRange, _spawnXRange), transform.position.y, transform.position.z);
+            Instantiate(Ball, spawnPosition, transform.rotation);
+        }
+        else {
+            Debug.LogAssertion("Null element in Prefabs array?", this);
+        }
 
     }
 }
