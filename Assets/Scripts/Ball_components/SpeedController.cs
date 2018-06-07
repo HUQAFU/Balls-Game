@@ -31,6 +31,12 @@ public class SpeedController : MonoBehaviour
     /// </summary>
     float _baseSpeed;
 
+    /// <summary>
+    /// Curve for adding speed based on game time left
+    /// </summary>
+    [SerializeField]
+    AnimationCurve _speedMultiplerCurveByTime;
+
     private void Awake()
     {
         _motor = GetComponent<Motor>();
@@ -40,6 +46,10 @@ public class SpeedController : MonoBehaviour
     void Start()
     {
         SetBaseSpeed();
+    }
+
+    void Update()
+    {
         SetMotorSpeed();
     }
 
@@ -52,11 +62,26 @@ public class SpeedController : MonoBehaviour
     }
 
     /// <summary>
-    /// Set motor speed
+    /// Get additional speed based on game time left and _speedMultiplerCurveByTime
+    /// </summary>
+    /// <returns></returns>
+    float GetAdditionalSpeed()
+    {
+        float additionalSpeedByTime = 0;
+        if (GameTimeManager.GameTimer != null)
+        {
+            float timerProgress = Mathf.InverseLerp(0, GameTimeManager.GameTimer.Time, GameTimeManager.GameTimer.CurrentTime);
+            additionalSpeedByTime = _speedMultiplerCurveByTime.Evaluate(timerProgress);
+        }
+        return additionalSpeedByTime;
+    }
+
+    /// <summary>
+    /// Set motor speed and add additional speed
     /// </summary>
     void SetMotorSpeed()
     {
-        _motor.Speed = _baseSpeed;
+        _motor.Speed = _baseSpeed + GetAdditionalSpeed();
     }
 }
 
